@@ -1,0 +1,26 @@
+public class Demo_Yield {
+    public static void main(String[] args) {
+        CMain t1 = new CMain();
+        System.out.println(t1.getState()); //New
+        t1.start();
+        System.out.println(t1.getState()); //Runnable
+        CMain t2 = new CMain();
+        t2.start();
+    }
+}
+
+
+class CMain extends Thread{
+    @Override
+    public void run(){
+        System.out.println(Thread.currentThread().getName()+"......."+Thread.currentThread().getState()); // t1 t2 both runnable state
+
+        for (int i = 1; i <= 10; i++) {
+                System.out.println(Thread.currentThread().getName()+"................."+i);
+                Thread.yield();
+               // System.out.println(Thread.currentThread().getName()+"..."+i);
+                //System.out.println("Finished.."+i);
+            }
+    }
+}
+
